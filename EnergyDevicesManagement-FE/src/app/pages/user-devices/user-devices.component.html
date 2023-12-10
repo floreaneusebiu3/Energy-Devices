@@ -1,0 +1,13 @@
+<app-navbar></app-navbar>
+<div class="table-content" role="main">
+  <div class="d-flex justify-content-center" style="margin-bottom: 20px">
+    <button class="button" mat-raised-button disabled="">User Devices</button>
+  </div>
+  <app-table
+    [dataSource]="dataSource"
+    [displayedColumns]="displayedColumns"
+    [showOperationButtons]="true"
+    (deleteEvent)="deleteUserDevice($event)"
+  ></app-table>
+  <div style="margin-top: 20px"></div>
+</div>

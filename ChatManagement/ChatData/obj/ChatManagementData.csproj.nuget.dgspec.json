@@ -1,0 +1,140 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\ChatManagement\\ChatData\\ChatManagementData.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\ChatManagement\\ChatData\\ChatManagementData.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\ChatManagement\\ChatData\\ChatManagementData.csproj",
+        "projectName": "ChatManagementData",
+        "projectPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\ChatManagement\\ChatData\\ChatManagementData.csproj",
+        "packagesPath": "C:\\Users\\alexf\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\ChatManagement\\ChatData\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\alexf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\ChatManagement\\ChatDomain\\ChatManagementDomain.csproj": {
+                "projectPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\ChatManagement\\ChatDomain\\ChatManagementDomain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.12, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\ChatManagement\\ChatDomain\\ChatManagementDomain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\ChatManagement\\ChatDomain\\ChatManagementDomain.csproj",
+        "projectName": "ChatManagementDomain",
+        "projectPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\ChatManagement\\ChatDomain\\ChatManagementDomain.csproj",
+        "packagesPath": "C:\\Users\\alexf\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\ChatManagement\\ChatDomain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\alexf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

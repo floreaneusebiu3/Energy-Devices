@@ -1,0 +1,17 @@
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\bin\Debug\net6.0\MeasurementRepository.deps.json
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\bin\Debug\net6.0\MeasurementRepository.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\bin\Debug\net6.0\MeasurementRepository.pdb
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\bin\Debug\net6.0\MonitoringManagementData.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\bin\Debug\net6.0\MonitoringManagementDomain.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\bin\Debug\net6.0\MonitoringManagementData.pdb
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\bin\Debug\net6.0\MonitoringManagementDomain.pdb
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\obj\Debug\net6.0\MeasurementRepository.csproj.AssemblyReference.cache
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\obj\Debug\net6.0\MeasurementRepository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\obj\Debug\net6.0\MeasurementRepository.AssemblyInfoInputs.cache
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\obj\Debug\net6.0\MeasurementRepository.AssemblyInfo.cs
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\obj\Debug\net6.0\MeasurementRepository.csproj.CoreCompileInputs.cache
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\obj\Debug\net6.0\MeasurementRepository.csproj.CopyComplete
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\obj\Debug\net6.0\MeasurementRepository.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\obj\Debug\net6.0\refint\MeasurementRepository.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\obj\Debug\net6.0\MeasurementRepository.pdb
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MeasurementRepository\obj\Debug\net6.0\ref\MeasurementRepository.dll

@@ -1,0 +1,45 @@
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-3">
+        <div class="card bg-success text-white" style="border-radius: 1rem;">
+            <div class="card-body p text-center">
+
+                <div class="mt-md-4">
+
+                    <h2 class="fw-bold mb-2">Register</h2>
+                    <p class="text-white-50 mb-5">Please enter your personal details!</p>
+                    <form [formGroup]="registerForm">
+                        <div>
+                            <mat-form-field>
+                                <mat-label>Email</mat-label>
+                                <input matInput formControlName="email">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <mat-label>Password</mat-label>
+                                <input matInput [type]="'password'" formControlName="password">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <mat-label>Name</mat-label>
+                                <input matInput formControlName="name">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <mat-label>Role</mat-label>
+                                <mat-select formControlName="role">
+                                    <mat-option value="CLIENT">Client</mat-option>
+                                    <mat-option value="ADMIN">Admin</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </form>
+                    <button class="btn btn-outline-light btn-lg px-5" type="submit"
+                        (click)="registerUser()">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\bin\Debug\net6.0\ChatManagementData.deps.json
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\bin\Debug\net6.0\ChatManagementData.runtimeconfig.json
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\bin\Debug\net6.0\ChatManagementData.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\bin\Debug\net6.0\ChatManagementData.pdb
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\bin\Debug\net6.0\ChatManagementDomain.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\bin\Debug\net6.0\ChatManagementDomain.pdb
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\obj\Debug\net6.0\ChatManagementData.csproj.AssemblyReference.cache
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\obj\Debug\net6.0\ChatManagementData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\obj\Debug\net6.0\ChatManagementData.AssemblyInfoInputs.cache
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\obj\Debug\net6.0\ChatManagementData.AssemblyInfo.cs
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\obj\Debug\net6.0\ChatManagementData.csproj.CoreCompileInputs.cache
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\obj\Debug\net6.0\ChatManagementData.csproj.CopyComplete
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\obj\Debug\net6.0\ChatManagementData.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\obj\Debug\net6.0\refint\ChatManagementData.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\obj\Debug\net6.0\ChatManagementData.pdb
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\obj\Debug\net6.0\ChatManagementData.genruntimeconfig.cache
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatData\obj\Debug\net6.0\ref\ChatManagementData.dll

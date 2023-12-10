@@ -1,0 +1,41 @@
+name: dockercompose16943300209358216750
+services:
+  monitoringserverapp:
+    build:
+      context: C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement
+      dockerfile: Dockerfile
+    container_name: monitoring-management-app
+    depends_on:
+      monitoringwebdb:
+        condition: service_started
+        required: true
+    environment:
+      DB_HOST: monitoringwebdb
+      DB_NAME: monitoringManagement
+      DB_SA_PASSWORD: Pasword@12345#
+      DB_USER: sa
+    image: monitoringserverapp
+    networks:
+      benetwork: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: "7202"
+        protocol: tcp
+  monitoringwebdb:
+    container_name: monitoringwebdb
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: Pasword@12345#
+    image: mcr.microsoft.com/mssql/server:latest
+    networks:
+      benetwork: null
+    ports:
+      - mode: ingress
+        target: 1433
+        published: "1436"
+        protocol: tcp
+networks:
+  benetwork:
+    name: benetwork
+    external: true

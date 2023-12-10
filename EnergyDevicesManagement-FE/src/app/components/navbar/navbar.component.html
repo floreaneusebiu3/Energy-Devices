@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-md bg-success navbar-dark">
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/chat">Chat</a>
+    </li>
+    <li *ngIf="role === 'CLIENT'" class="nav-item">
+      <a class="nav-link" routerLink="/client/devices">Devices</a>
+    </li>
+    <li *ngIf="role === 'ADMIN'" class="nav-item">
+      <a class="nav-link" routerLink="/admin/users">Users</a>
+    </li>
+    <li *ngIf="role === 'ADMIN'" class="nav-item">
+      <a class="nav-link" routerLink="/admin/devices">Devices</a>
+    </li>
+    <li *ngIf="role === 'ADMIN'" class="nav-item">
+      <a class="nav-link" routerLink="/admin/user-devices">User-Devices</a>
+    </li>
+    <li *ngIf="role === 'ADMIN'" class="nav-item">
+      <a class="nav-link" routerLink="/admin/map-user-devices"
+        >Map user to device</a
+      >
+    </li>
+  </ul>
+</nav>

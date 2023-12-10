@@ -1,0 +1,10 @@
+mat-form-field {
+  margin: 10px 30px;
+}
+
+.error {
+  padding-top: 30px;
+  font-size: large;
+  font-weight: 500;
+  color: #f26529;
+}

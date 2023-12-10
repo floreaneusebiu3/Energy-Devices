@@ -1,0 +1,60 @@
+<div class="table-card mat-elevation-z8">
+  <table mat-table [dataSource]="matTableDataSource">
+    <ng-container
+      [matColumnDef]="column.key"
+      *ngFor="let column of displayedColumns | keyvalue"
+    >
+      <th mat-header-cell *matHeaderCellDef>
+        {{ column.value }}
+      </th>
+      <td mat-cell *matCellDef="let emp">{{ emp[column.key] }}</td>
+    </ng-container>
+    <ng-container matColumnDef="editIcon">
+      <th style="display: none" *matHeaderCellDef="">edit</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="flex-items">
+          <button
+            *ngIf="showOperationButtons"
+            class="icon-button"
+            aria-label="editIcon"
+          >
+            <mat-icon
+              class="icon"
+              fontIcon="edit"
+              (click)="emitUpdateEvent(element)"
+            ></mat-icon>
+          </button>
+          <button
+            *ngIf="showOperationButtons"
+            class="icon-button"
+            aria-label="deleteIcon"
+          >
+            <mat-icon
+              class="icon"
+              fontIcon="delete"
+              (click)="emitDeleteEvent(element)"
+            ></mat-icon>
+          </button>
+          <button
+            *ngIf="hasChartButton"
+            class="icon-button"
+            aria-label="chartIcon"
+          >
+            <mat-icon
+              class="chart-icon"
+              fontIcon="history"
+              (click)="emitChartEvent(element)"
+            ></mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnNames"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5]"
+    aria-label="Select page of periodic elements"
+  ></mat-paginator>
+</div>

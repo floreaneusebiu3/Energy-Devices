@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+<div class="table-content" role="main">
+  <div class="d-flex justify-content-center">
+    <button class="button" (click)="openCreateDialog()" mat-raised-button>
+      {{ createUserText }}
+    </button>
+  </div>
+  <div style="margin-top: 20px"></div>
+  <app-table
+    [showOperationButtons]="true"
+    [dataSource]="dataSource"
+    [displayedColumns]="displayedColumns"
+    (editEvent)="editUser($event)"
+    (deleteEvent)="deleteUser($event)"
+  ></app-table>
+  <div style="margin-top: 20px"></div>
+</div>

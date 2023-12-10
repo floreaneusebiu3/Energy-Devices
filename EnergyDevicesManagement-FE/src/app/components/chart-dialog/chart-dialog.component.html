@@ -1,0 +1,25 @@
+<div>
+  <div class="d-flex">
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        (dateChange)="handleSelectedDate($event.value)"
+      />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <div *ngIf="noData" class="error">
+      No measurements available. Please select another time
+    </div>
+  </div>
+  <canvasjs-chart
+    (chartInstance)="getChartInstance($event)"
+    [options]="chartOptions"
+    [styles]="{ width: '1000px', height: '400px' }"
+  ></canvasjs-chart>
+</div>

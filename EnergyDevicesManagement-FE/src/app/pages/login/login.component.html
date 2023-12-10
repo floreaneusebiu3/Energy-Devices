@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-3">
+        <div class="card bg-success text-white" style="border-radius: 1rem;">
+            <div class="card-body text-center">
+
+                <div class="mb-md-3 mt-md-3 pb-5">
+
+                    <h2 class="fw-bold mb-2">Login</h2>
+                    <p class="text-white-50 mb-5">Please enter your email and password!</p>
+                    <form [formGroup]="authForm">
+                        <div>
+                            <mat-form-field style="width: 300px;">
+                                <mat-label>Email</mat-label>
+                                <input matInput formControlName="email">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field style="width: 300px;">
+                                <mat-label>Password</mat-label>
+                                <input matInput [type]="'password'" formControlName="password">
+                            </mat-form-field>
+                        </div>
+                    </form>
+
+                    <button class="btn btn-outline-light btn-lg px-5" type="submit" (click)="login()">Login</button>
+                </div>
+
+                <div>
+                    <p class="mb-0">Don't have an account? <a href="register" class="text-white-50 fw-bold">Sign Up</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

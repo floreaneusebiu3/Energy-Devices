@@ -1,0 +1,17 @@
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\bin\Debug\net6.0\MonitoringManagementData.deps.json
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\bin\Debug\net6.0\MonitoringManagementData.runtimeconfig.json
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\bin\Debug\net6.0\MonitoringManagementData.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\bin\Debug\net6.0\MonitoringManagementData.pdb
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\bin\Debug\net6.0\MonitoringManagementDomain.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\bin\Debug\net6.0\MonitoringManagementDomain.pdb
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\obj\Debug\net6.0\MonitoringManagementData.csproj.AssemblyReference.cache
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\obj\Debug\net6.0\MonitoringManagementData.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\obj\Debug\net6.0\MonitoringManagementData.AssemblyInfoInputs.cache
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\obj\Debug\net6.0\MonitoringManagementData.AssemblyInfo.cs
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\obj\Debug\net6.0\MonitoringManagementData.csproj.CoreCompileInputs.cache
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\obj\Debug\net6.0\MonitoringManagementData.csproj.CopyComplete
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\obj\Debug\net6.0\MonitoringManagementData.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\obj\Debug\net6.0\refint\MonitoringManagementData.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\obj\Debug\net6.0\MonitoringManagementData.pdb
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\obj\Debug\net6.0\MonitoringManagementData.genruntimeconfig.cache
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\MonitoringManegement\MonitoringManagementData\obj\Debug\net6.0\ref\MonitoringManagementData.dll

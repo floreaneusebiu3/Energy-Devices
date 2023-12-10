@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<div class="d-flex flex-column justify-content-center">
+  <div class="chat-container">
+    <div class="user-container">
+      <div
+        (click)="updateSelectedUser(i)"
+        *ngFor="let user of users; index as i"
+        class="user-box d-flex"
+      >
+        <mat-icon>account_circle </mat-icon>
+        <span class="role"> {{ user.role }}</span>
+        <div>
+          <div class="text d-flex justify-content-center">{{ user.name }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="message-container">
+      <div class="header d-flex justify-content-start mt-2">
+        <mat-icon>chat</mat-icon>
+        <span>{{ selectedUser?.name }}</span>
+      </div>
+      <div class="chat" #chatConversation>
+        <div
+          *ngFor="let message of messages"
+          [ngClass]="
+            message.senderId === selectedUser?.id
+              ? 'message-align-start'
+              : 'message-align-end'
+          "
+        >
+          <div class="message">
+            {{ message.messageText }}
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="selectedUser !== undefined"
+        class="input-container d-flex w-100"
+      >
+        <input
+          (keyup.enter)="sendMessage()"
+          type="text"
+          [(ngModel)]="messageText"
+        />
+        <div>
+          <button (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

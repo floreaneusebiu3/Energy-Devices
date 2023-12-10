@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+/* 
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+.button {
+  border: 2px solid #fff !important;
+  background-color: rgb(37, 157, 101) !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+}

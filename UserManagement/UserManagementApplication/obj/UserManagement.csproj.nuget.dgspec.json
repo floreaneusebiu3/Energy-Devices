@@ -1,0 +1,320 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementApplication\\UserManagement.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementApplication\\UserManagement.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementApplication\\UserManagement.csproj",
+        "projectName": "UserManagement",
+        "projectPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementApplication\\UserManagement.csproj",
+        "packagesPath": "C:\\Users\\alexf\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementApplication\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\alexf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementData\\UserManagementData.csproj": {
+                "projectPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementData\\UserManagementData.csproj"
+              },
+              "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementDomain\\UserManagementDomain.csproj": {
+                "projectPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementDomain\\UserManagementDomain.csproj"
+              },
+              "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementService\\UserManagementService.csproj": {
+                "projectPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementService\\UserManagementService.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.1.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.19.4, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementData\\UserManagementData.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementData\\UserManagementData.csproj",
+        "projectName": "UserManagementData",
+        "projectPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementData\\UserManagementData.csproj",
+        "packagesPath": "C:\\Users\\alexf\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementData\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\alexf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementDomain\\UserManagementDomain.csproj": {
+                "projectPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementDomain\\UserManagementDomain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "BCrypt.Net-Core": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.12, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementDomain\\UserManagementDomain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementDomain\\UserManagementDomain.csproj",
+        "projectName": "UserManagementDomain",
+        "projectPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementDomain\\UserManagementDomain.csproj",
+        "packagesPath": "C:\\Users\\alexf\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementDomain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\alexf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.1.39, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementService\\UserManagementService.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementService\\UserManagementService.csproj",
+        "projectName": "UserManagementService",
+        "projectPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementService\\UserManagementService.csproj",
+        "packagesPath": "C:\\Users\\alexf\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementService\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\alexf\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementData\\UserManagementData.csproj": {
+                "projectPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementData\\UserManagementData.csproj"
+              },
+              "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementDomain\\UserManagementDomain.csproj": {
+                "projectPath": "C:\\Users\\alexf\\OneDrive\\Desktop\\FACULTA\\SD\\tema1\\UserManagement\\UserManagementDomain\\UserManagementDomain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "BCrypt.Net-Core": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.1.2, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
