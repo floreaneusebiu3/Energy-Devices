@@ -4,4 +4,5 @@ export const environment = {
   monitoringManagementUrl: 'https://localhost:5202',
   chatManagementUrl: 'https://localhost:5204',
   monitoringNotificationWebSocketUrl: 'http://localhost:7202/hub/clients',
+  chatWebSocketUrl: 'http://localhost:7204/hub/chat',
 };

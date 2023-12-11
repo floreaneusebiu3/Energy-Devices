@@ -1,7 +1,6 @@
 ﻿using ChatManagementService.Common;
 using ChatManagementService.Exceptions;
 using ChatManagementService.Model;
-using ChatManagementService.Services;
 using ChatManagementService.Services.Interfaces;
 using FluentValidation;
 using FluentValidation.Results;
@@ -61,7 +60,8 @@ namespace ChatManagement.Controllers
             {
                 return FormatResponse(GetErrorValidationResponse<GroupMessageDto>(validationResult));
             }
-            var result = _messageService.SendMessageToGroup(messageDto);
+
+            var result = _messageService.SendMessageToGroup(GetIdFromToken(), messageDto);
             return FormatResponse(result);
         }
 
@@ -76,11 +76,7 @@ namespace ChatManagement.Controllers
             {
                 return FormatResponse(GetErrorValidationResponse<UserMessageDto>(validationResult));
             }
-            if (GetIdFromToken() != messageDto.SenderUserId) 
-            {
-                return Unauthorized();
-            }
-            var result = _messageService.SendMessageToUser(messageDto);
+            var result = _messageService.SendMessageToUser(GetIdFromToken(), messageDto);
             return FormatResponse(result);
         }
 
@@ -112,6 +108,5 @@ namespace ChatManagement.Controllers
             var id = jsonToken?.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value;
             return new Guid(id);
         }
-
     }
 }

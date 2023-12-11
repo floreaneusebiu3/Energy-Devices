@@ -11,6 +11,7 @@ import { AuthenticationGuard } from './guards/authentication/authentication.guar
 import { AuthorizationGuard } from './guards/authorization/authorization.guard';
 import { ChartDialogComponent } from './components/chart-dialog/chart-dialog.component';
 import { ChatComponent } from './pages/chat/chat.component';
+import { GroupComponent } from './pages/group/group.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -34,6 +35,11 @@ const routes: Routes = [
   {
     path: 'admin/map-user-devices',
     component: MapUseDeviceComponent,
+    canActivate: [AuthenticationGuard, AuthorizationGuard],
+  },
+  {
+    path: 'admin/create-group',
+    component: GroupComponent,
     canActivate: [AuthenticationGuard, AuthorizationGuard],
   },
   {

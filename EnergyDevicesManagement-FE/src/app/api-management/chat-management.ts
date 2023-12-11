@@ -45,11 +45,8 @@ export class ChatManagementClient {
   /**
    * @return Success
    */
-  admin(adminId: string): Observable<GroupDtoListResponse> {
-    let url_ = this.baseUrl + '/Group/Admin/{AdminId}';
-    if (adminId === undefined || adminId === null)
-      throw new Error("The parameter 'adminId' must be defined.");
-    url_ = url_.replace('{AdminId}', encodeURIComponent('' + adminId));
+  admin(): Observable<GroupDtoListResponse> {
+    let url_ = this.baseUrl + '/Group/Admin';
     url_ = url_.replace(/[?&]$/, '');
 
     let options_: any = {
@@ -1354,7 +1351,6 @@ export class ChatManagementClient {
 
 export class CreateGroupDto implements ICreateGroupDto {
   name?: string | undefined;
-  adminId?: string;
   usersId?: string[] | undefined;
 
   constructor(data?: ICreateGroupDto) {
@@ -1369,7 +1365,6 @@ export class CreateGroupDto implements ICreateGroupDto {
   init(_data?: any) {
     if (_data) {
       this.name = _data['name'];
-      this.adminId = _data['adminId'];
       if (Array.isArray(_data['usersId'])) {
         this.usersId = [] as any;
         for (let item of _data['usersId']) this.usersId!.push(item);
@@ -1387,7 +1382,6 @@ export class CreateGroupDto implements ICreateGroupDto {
   toJSON(data?: any) {
     data = typeof data === 'object' ? data : {};
     data['name'] = this.name;
-    data['adminId'] = this.adminId;
     if (Array.isArray(this.usersId)) {
       data['usersId'] = [];
       for (let item of this.usersId) data['usersId'].push(item);
@@ -1398,7 +1392,6 @@ export class CreateGroupDto implements ICreateGroupDto {
 
 export interface ICreateGroupDto {
   name?: string | undefined;
-  adminId?: string;
   usersId?: string[] | undefined;
 }
 
@@ -1605,7 +1598,6 @@ export interface IGroupDtoListResponse {
 
 export class GroupMessageDto implements IGroupMessageDto {
   messageText?: string | undefined;
-  senderUserId?: string;
   groupId?: string;
 
   constructor(data?: IGroupMessageDto) {
@@ -1620,7 +1612,6 @@ export class GroupMessageDto implements IGroupMessageDto {
   init(_data?: any) {
     if (_data) {
       this.messageText = _data['messageText'];
-      this.senderUserId = _data['senderUserId'];
       this.groupId = _data['groupId'];
     }
   }
@@ -1635,7 +1626,6 @@ export class GroupMessageDto implements IGroupMessageDto {
   toJSON(data?: any) {
     data = typeof data === 'object' ? data : {};
     data['messageText'] = this.messageText;
-    data['senderUserId'] = this.senderUserId;
     data['groupId'] = this.groupId;
     return data;
   }
@@ -1643,7 +1633,6 @@ export class GroupMessageDto implements IGroupMessageDto {
 
 export interface IGroupMessageDto {
   messageText?: string | undefined;
-  senderUserId?: string;
   groupId?: string;
 }
 
@@ -2055,7 +2044,6 @@ export interface IUserGroupDtoResponse {
 
 export class UserMessageDto implements IUserMessageDto {
   messageText?: string | undefined;
-  senderUserId?: string;
   destionationUserId?: string;
 
   constructor(data?: IUserMessageDto) {
@@ -2070,7 +2058,6 @@ export class UserMessageDto implements IUserMessageDto {
   init(_data?: any) {
     if (_data) {
       this.messageText = _data['messageText'];
-      this.senderUserId = _data['senderUserId'];
       this.destionationUserId = _data['destionationUserId'];
     }
   }
@@ -2085,7 +2072,6 @@ export class UserMessageDto implements IUserMessageDto {
   toJSON(data?: any) {
     data = typeof data === 'object' ? data : {};
     data['messageText'] = this.messageText;
-    data['senderUserId'] = this.senderUserId;
     data['destionationUserId'] = this.destionationUserId;
     return data;
   }
@@ -2093,7 +2079,6 @@ export class UserMessageDto implements IUserMessageDto {
 
 export interface IUserMessageDto {
   messageText?: string | undefined;
-  senderUserId?: string;
   destionationUserId?: string;
 }
 

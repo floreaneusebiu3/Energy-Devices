@@ -8,6 +8,6 @@ public interface IGroupService
 {
     Response<List<GroupDto>> GetGroupsForUser(Guid userId);
     Response<List<GroupDto>> GetGroupsForAdmin(Guid adminId);
-    Response<CreateGroupDto> CreateGroup(CreateGroupDto groupDto);
+    Response<CreateGroupDto> CreateGroup(Guid adminId, CreateGroupDto groupDto);
     Response<UserGroupDto> AddUserToGroup(Guid groupId, Guid userId);
 }

@@ -30,7 +30,6 @@ export class ClientComponent {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.authService.getIdFromToken());
     this.devicesService
       .getDevicesForAuthenticatedUser()
       .subscribe((devices) => {

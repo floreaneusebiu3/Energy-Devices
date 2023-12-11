@@ -5,8 +5,8 @@ namespace ChatManagementService.Services.Interfaces;
 
 public interface IMessageService
 {
-    Response<UserMessageDto> SendMessageToUser(UserMessageDto messageDto);
-    Response<GroupMessageDto> SendMessageToGroup(GroupMessageDto messageDto);
+    Response<UserMessageDto> SendMessageToUser(Guid senderUserId, UserMessageDto messageDto);
+    Response<GroupMessageDto> SendMessageToGroup(Guid senderUserId, GroupMessageDto messageDto);
     Response<List<MessageDto>> GetGroupMessages(Guid groupId);
     Response<List<MessageDto>> GetUsersMessages(Guid currentUserId, Guid otherUserId);
 }

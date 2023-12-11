@@ -95,3 +95,4 @@ C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatManagement\b
 C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatManagement\bin\Debug\net6.0\FluentValidation.dll
 C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatManagement\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
 C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatManagement\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\alexf\OneDrive\Desktop\FACULTA\SD\tema1\ChatManagement\ChatManagement\bin\Debug\net6.0\Newtonsoft.Json.dll

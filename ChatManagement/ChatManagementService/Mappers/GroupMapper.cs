@@ -6,9 +6,9 @@ namespace ChatManagementService.Mappers;
 
 public static class GroupMapper
 {
-    public static Group MapToGroupEntity(this CreateGroupDto groupDto) => new()
+    public static Group MapToGroupEntity(this CreateGroupDto groupDto, Guid adminId) => new()
     {
-        AdminId = groupDto.AdminId,
+        AdminId = adminId,
         Name = groupDto.Name,
     };
 

@@ -34,6 +34,7 @@ import { ChartDialogComponent } from './components/chart-dialog/chart-dialog.com
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { ChatComponent } from './pages/chat/chat.component';
+import { GroupComponent } from './pages/group/group.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ChatComponent } from './pages/chat/chat.component';
     ClientComponent,
     ChartDialogComponent,
     ChatComponent,
+    GroupComponent,
   ],
   imports: [
     BrowserModule,

@@ -43,9 +43,9 @@ public class GroupService : IGroupService
         return new Response<List<GroupDto>>(groups);
     }
 
-    public Response<CreateGroupDto> CreateGroup(CreateGroupDto groupDto)
+    public Response<CreateGroupDto> CreateGroup(Guid adminId, CreateGroupDto groupDto)
     {
-        if (!_userRepository.Query(u => u.Id == groupDto.AdminId).Any())
+        if (!_userRepository.Query(u => u.Id == adminId).Any())
         {
             return new Response<CreateGroupDto>(new UserNotFoundException(Constants.API_ADMIN_NOT_FOUND_EXCEPTION));
         }
@@ -58,7 +58,7 @@ public class GroupService : IGroupService
             }
         }
 
-        Group group = groupDto.MapToGroupEntity();
+        Group group = groupDto.MapToGroupEntity(adminId);
         _groupRepository.Add(group);
         _groupRepository.SaveChanges();
 

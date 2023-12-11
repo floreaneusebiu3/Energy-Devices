@@ -30,7 +30,6 @@ export class MessageService {
     messageText: string
   ): Observable<UserMessageDtoResponse> {
     var messageDto = new UserMessageDto();
-    messageDto.senderUserId = this.authService.getIdFromToken();
     messageDto.destionationUserId = destinationUserId;
     messageDto.messageText = messageText;
     return this.apiClient.userMessage(messageDto);

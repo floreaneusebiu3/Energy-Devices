@@ -21,5 +21,8 @@
         >Map user to device</a
       >
     </li>
+    <li *ngIf="role === 'ADMIN'" class="nav-item">
+      <a class="nav-link" routerLink="/admin/create-group">Create Group</a>
+    </li>
   </ul>
 </nav>

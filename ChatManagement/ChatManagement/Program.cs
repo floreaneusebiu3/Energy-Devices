@@ -1,6 +1,7 @@
 using ChatData;
 using ChatDomain;
 using ChatManagementData.Repositories;
+using ChatManagementService.Gateway;
 using ChatManagementService.Model;
 using ChatManagementService.Services;
 using ChatManagementService.Services.Interfaces;
@@ -11,23 +12,34 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-var AngularSpecificOrigins = "_AllowAngularApp";
-
 IConfiguration _config = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory())
     .AddJsonFile("appsettings.json")
     .Build();
 
+var NSwagSpecificOrigins = "_nswaggPolicy";
+var AngularSpecificOrigins = "_ngularAppPolicy";
+var RabbitMqSpecificOrigins = "_rabbitMqPolicy";
+
 builder.Services.AddCors(p =>
 {
-    p.AddPolicy(MyAllowSpecificOrigins, builder =>
-        builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
+    p.AddPolicy(NSwagSpecificOrigins, builder =>
+        builder.WithOrigins("*")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowAnyOrigin());
     p.AddPolicy(AngularSpecificOrigins, builder =>
-        builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin()
+        builder.WithOrigins("*")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowAnyOrigin()
         );
-}
-);
+    p.AddPolicy(RabbitMqSpecificOrigins, builder =>
+        builder.AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials()
+        .WithOrigins("http://localhost:4200"));
+});
 
 // Add services to the container.
 RegisterSingleton();
@@ -51,11 +63,29 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
-app.UseCors(MyAllowSpecificOrigins);
+app.UseCors(RabbitMqSpecificOrigins);
+app.UseCors(NSwagSpecificOrigins);
 app.UseCors(AngularSpecificOrigins);
+
+app.UseWebSockets(new WebSocketOptions
+{
+    KeepAliveInterval = TimeSpan.FromSeconds(120),
+});
+
+app.UseRouting();
+
+app.UseAuthentication();
+
+app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapHub<ClientHub>(_config["Url:ChatWebSocketUrl"]);
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -65,10 +95,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.UseAuthentication();
-
-app.UseAuthorization();
 
 app.MapControllers();
 

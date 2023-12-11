@@ -13,17 +13,32 @@
           <div class="text d-flex justify-content-center">{{ user.name }}</div>
         </div>
       </div>
+      <div
+        (click)="updateSelectedGroup(i)"
+        *ngFor="let group of groups; index as i"
+        class="user-box d-flex"
+      >
+        <mat-icon>group </mat-icon>
+        <span class="role"> Group</span>
+        <div>
+          <div class="text d-flex justify-content-center">{{ group.name }}</div>
+        </div>
+      </div>
     </div>
     <div class="message-container">
       <div class="header d-flex justify-content-start mt-2">
         <mat-icon>chat</mat-icon>
-        <span>{{ selectedUser?.name }}</span>
+        <span>{{ selected?.name }}</span>
+        <div class="members-container" *ngIf="!isUserSelected">
+          :
+          <span *ngFor="let member of selected.members">{{ member }},</span>
+        </div>
       </div>
       <div class="chat" #chatConversation>
         <div
           *ngFor="let message of messages"
           [ngClass]="
-            message.senderId === selectedUser?.id
+            message.senderId === selected?.id
               ? 'message-align-start'
               : 'message-align-end'
           "
@@ -33,10 +48,7 @@
           </div>
         </div>
       </div>
-      <div
-        *ngIf="selectedUser !== undefined"
-        class="input-container d-flex w-100"
-      >
+      <div *ngIf="selected !== undefined" class="input-container d-flex w-100">
         <input
           (keyup.enter)="sendMessage()"
           type="text"
