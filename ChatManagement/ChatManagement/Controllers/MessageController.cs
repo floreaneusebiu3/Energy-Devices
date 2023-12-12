@@ -28,13 +28,22 @@ namespace ChatManagement.Controllers
             _groupMessageDtoValidator = groupMessageDtoValidator;
         }
 
+        [HttpGet("UserTyping/{DestinationUserId}/{TextLength}")]
+        [Authorize(Roles = "ADMIN, CLIENT")]
+        public IActionResult NotifyUserTyping(Guid DestinationUserId, int TextLength)
+        {
+            _messageService.NotifyUserIsTyping(GetIdFromToken(), DestinationUserId, TextLength);
+            return Ok();
+        }
+
+
         [HttpGet("Group/{GroupId}")]
         [Authorize(Roles = "ADMIN, CLIENT")]
         [ProducesResponseType(typeof(Response<List<MessageDto>>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Response<List<MessageDto>>), (int)HttpStatusCode.NotFound)]
         public IActionResult GetGroupMessages(Guid GroupId)
         {
-            var result = _messageService.GetGroupMessages(GroupId);
+            var result = _messageService.GetGroupMessages(GroupId, GetRoleFromToken());
             return FormatResponse(result);
         }
 
@@ -107,6 +116,15 @@ namespace ChatManagement.Controllers
             var jsonToken = handler.ReadToken(_bearer_token) as JwtSecurityToken;
             var id = jsonToken?.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value;
             return new Guid(id);
+        }
+
+        private string GetRoleFromToken()
+        {
+            var _bearer_token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(_bearer_token) as JwtSecurityToken;
+            var role = jsonToken?.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role)?.Value;
+            return role;
         }
     }
 }

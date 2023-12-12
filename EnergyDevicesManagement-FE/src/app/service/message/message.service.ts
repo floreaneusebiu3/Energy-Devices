@@ -36,6 +36,10 @@ export class MessageService {
   }
 
   getUserMessages(userId: string): Observable<MessageDtoListResponse> {
-    return this.apiClient.userGET2(userId);
+    return this.apiClient.userGET(userId);
+  }
+
+  userIsTyping(destinationUserId: string, textLength: number): void {
+    this.apiClient.userTyping(destinationUserId, textLength).subscribe();
   }
 }

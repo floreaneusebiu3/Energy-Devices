@@ -127,93 +127,6 @@ export class ChatManagementClient {
   }
 
   /**
-   * @return Success
-   */
-  userGET(userId: string): Observable<GroupDtoListResponse> {
-    let url_ = this.baseUrl + '/Group/User/{UserId}';
-    if (userId === undefined || userId === null)
-      throw new Error("The parameter 'userId' must be defined.");
-    url_ = url_.replace('{UserId}', encodeURIComponent('' + userId));
-    url_ = url_.replace(/[?&]$/, '');
-
-    let options_: any = {
-      observe: 'response',
-      responseType: 'blob',
-      headers: new HttpHeaders({
-        Accept: 'text/plain',
-      }),
-    };
-
-    return this.http
-      .request('get', url_, options_)
-      .pipe(
-        _observableMergeMap((response_: any) => {
-          return this.processUserGET(response_);
-        })
-      )
-      .pipe(
-        _observableCatch((response_: any) => {
-          if (response_ instanceof HttpResponseBase) {
-            try {
-              return this.processUserGET(response_ as any);
-            } catch (e) {
-              return _observableThrow(
-                e
-              ) as any as Observable<GroupDtoListResponse>;
-            }
-          } else
-            return _observableThrow(
-              response_
-            ) as any as Observable<GroupDtoListResponse>;
-        })
-      );
-  }
-
-  protected processUserGET(
-    response: HttpResponseBase
-  ): Observable<GroupDtoListResponse> {
-    const status = response.status;
-    const responseBlob =
-      response instanceof HttpResponse
-        ? response.body
-        : (response as any).error instanceof Blob
-        ? (response as any).error
-        : undefined;
-
-    let _headers: any = {};
-    if (response.headers) {
-      for (let key of response.headers.keys()) {
-        _headers[key] = response.headers.get(key);
-      }
-    }
-    if (status === 200) {
-      return blobToText(responseBlob).pipe(
-        _observableMergeMap((_responseText: string) => {
-          let result200: any = null;
-          let resultData200 =
-            _responseText === ''
-              ? null
-              : JSON.parse(_responseText, this.jsonParseReviver);
-          result200 = GroupDtoListResponse.fromJS(resultData200);
-          return _observableOf(result200);
-        })
-      );
-    } else if (status !== 200 && status !== 204) {
-      return blobToText(responseBlob).pipe(
-        _observableMergeMap((_responseText: string) => {
-          return throwException(
-            'An unexpected server error occurred.',
-            status,
-            _responseText,
-            _headers
-          );
-        })
-      );
-    }
-    return _observableOf(null as any);
-  }
-
-  /**
    * @param body (optional)
    * @return Success
    */
@@ -472,6 +385,85 @@ export class ChatManagementClient {
   /**
    * @return Success
    */
+  userTyping(destinationUserId: string, textLength: number): Observable<void> {
+    let url_ =
+      this.baseUrl + '/Message/UserTyping/{DestinationUserId}/{TextLength}';
+    if (destinationUserId === undefined || destinationUserId === null)
+      throw new Error("The parameter 'destinationUserId' must be defined.");
+    url_ = url_.replace(
+      '{DestinationUserId}',
+      encodeURIComponent('' + destinationUserId)
+    );
+    if (textLength === undefined || textLength === null)
+      throw new Error("The parameter 'textLength' must be defined.");
+    url_ = url_.replace('{TextLength}', encodeURIComponent('' + textLength));
+    url_ = url_.replace(/[?&]$/, '');
+
+    let options_: any = {
+      observe: 'response',
+      responseType: 'blob',
+      headers: new HttpHeaders({}),
+    };
+
+    return this.http
+      .request('get', url_, options_)
+      .pipe(
+        _observableMergeMap((response_: any) => {
+          return this.processUserTyping(response_);
+        })
+      )
+      .pipe(
+        _observableCatch((response_: any) => {
+          if (response_ instanceof HttpResponseBase) {
+            try {
+              return this.processUserTyping(response_ as any);
+            } catch (e) {
+              return _observableThrow(e) as any as Observable<void>;
+            }
+          } else return _observableThrow(response_) as any as Observable<void>;
+        })
+      );
+  }
+
+  protected processUserTyping(response: HttpResponseBase): Observable<void> {
+    const status = response.status;
+    const responseBlob =
+      response instanceof HttpResponse
+        ? response.body
+        : (response as any).error instanceof Blob
+        ? (response as any).error
+        : undefined;
+
+    let _headers: any = {};
+    if (response.headers) {
+      for (let key of response.headers.keys()) {
+        _headers[key] = response.headers.get(key);
+      }
+    }
+    if (status === 200) {
+      return blobToText(responseBlob).pipe(
+        _observableMergeMap((_responseText: string) => {
+          return _observableOf(null as any);
+        })
+      );
+    } else if (status !== 200 && status !== 204) {
+      return blobToText(responseBlob).pipe(
+        _observableMergeMap((_responseText: string) => {
+          return throwException(
+            'An unexpected server error occurred.',
+            status,
+            _responseText,
+            _headers
+          );
+        })
+      );
+    }
+    return _observableOf(null as any);
+  }
+
+  /**
+   * @return Success
+   */
   group(groupId: string): Observable<MessageDtoListResponse> {
     let url_ = this.baseUrl + '/Message/Group/{GroupId}';
     if (groupId === undefined || groupId === null)
@@ -577,7 +569,7 @@ export class ChatManagementClient {
   /**
    * @return Success
    */
-  userGET2(userId: string): Observable<MessageDtoListResponse> {
+  userGET(userId: string): Observable<MessageDtoListResponse> {
     let url_ = this.baseUrl + '/Message/User/{UserId}';
     if (userId === undefined || userId === null)
       throw new Error("The parameter 'userId' must be defined.");
@@ -596,14 +588,14 @@ export class ChatManagementClient {
       .request('get', url_, options_)
       .pipe(
         _observableMergeMap((response_: any) => {
-          return this.processUserGET2(response_);
+          return this.processUserGET(response_);
         })
       )
       .pipe(
         _observableCatch((response_: any) => {
           if (response_ instanceof HttpResponseBase) {
             try {
-              return this.processUserGET2(response_ as any);
+              return this.processUserGET(response_ as any);
             } catch (e) {
               return _observableThrow(
                 e
@@ -617,7 +609,7 @@ export class ChatManagementClient {
       );
   }
 
-  protected processUserGET2(
+  protected processUserGET(
     response: HttpResponseBase
   ): Observable<MessageDtoListResponse> {
     const status = response.status;
@@ -1146,7 +1138,7 @@ export class ChatManagementClient {
   /**
    * @return Success
    */
-  userGET3(): Observable<UserDtoListResponse> {
+  userGET2(): Observable<UserDtoListResponse> {
     let url_ = this.baseUrl + '/User';
     url_ = url_.replace(/[?&]$/, '');
 
@@ -1162,14 +1154,14 @@ export class ChatManagementClient {
       .request('get', url_, options_)
       .pipe(
         _observableMergeMap((response_: any) => {
-          return this.processUserGET3(response_);
+          return this.processUserGET2(response_);
         })
       )
       .pipe(
         _observableCatch((response_: any) => {
           if (response_ instanceof HttpResponseBase) {
             try {
-              return this.processUserGET3(response_ as any);
+              return this.processUserGET2(response_ as any);
             } catch (e) {
               return _observableThrow(
                 e
@@ -1183,7 +1175,7 @@ export class ChatManagementClient {
       );
   }
 
-  protected processUserGET3(
+  protected processUserGET2(
     response: HttpResponseBase
   ): Observable<UserDtoListResponse> {
     const status = response.status;
@@ -1693,6 +1685,7 @@ export class MessageDto implements IMessageDto {
   messageText?: string | undefined;
   senderId?: string;
   destionationUserId?: string;
+  status?: string | undefined;
   senderName?: string | undefined;
 
   constructor(data?: IMessageDto) {
@@ -1709,6 +1702,7 @@ export class MessageDto implements IMessageDto {
       this.messageText = _data['messageText'];
       this.senderId = _data['senderId'];
       this.destionationUserId = _data['destionationUserId'];
+      this.status = _data['status'];
       this.senderName = _data['senderName'];
     }
   }
@@ -1725,6 +1719,7 @@ export class MessageDto implements IMessageDto {
     data['messageText'] = this.messageText;
     data['senderId'] = this.senderId;
     data['destionationUserId'] = this.destionationUserId;
+    data['status'] = this.status;
     data['senderName'] = this.senderName;
     return data;
   }
@@ -1734,6 +1729,7 @@ export interface IMessageDto {
   messageText?: string | undefined;
   senderId?: string;
   destionationUserId?: string;
+  status?: string | undefined;
   senderName?: string | undefined;
 }
 

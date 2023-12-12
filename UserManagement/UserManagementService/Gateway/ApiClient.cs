@@ -9,7 +9,8 @@ namespace UserManagementService.Gateway
 {
     public class ApiClient
     {
-        private string baseUrl;
+        private string devicesBaseUrl;
+        private string chatBaseUrl;
         private readonly IConfiguration _config;
         private string token;
 
@@ -17,47 +18,85 @@ namespace UserManagementService.Gateway
         {
             _config = config;
             token = _config.GetValue<string>("JWT:NeverExpireToken");
-            baseUrl = _config.GetValue<string>("Url:ApiClientBaseUrl");
+            devicesBaseUrl = _config.GetValue<string>("Url:DevicesClientBaseUrl");
+            chatBaseUrl = _config.GetValue<string>("Url:ChatClientBaseUrl");
         }
 
         public async Task<HttpResponseMessage> AddUserInDevices(RegisterUserDto registerUserDto, Guid id)
         {
-            var url = baseUrl + "/devices-users";
-            var user = new UserGatewayDto
+            var devicesUrl = devicesBaseUrl + "/devices-users";
+            var chatUrl = chatBaseUrl + "/User";
+            
+            var devicesUser = new DevicesUserGatewayDto
             {
                 Id = id,
                 Name = registerUserDto.Name,
                 Email = registerUserDto.Email,
             };
-            var json = JsonConvert.SerializeObject(user);
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var chatUser = new ChatUserGatewayDto
+            {
+                Id = id,
+                Name = registerUserDto.Name,
+                Role = registerUserDto.Role,
+            };
+
+            var json1 = JsonConvert.SerializeObject(devicesUser);
+            var devicesData = new StringContent(json1, Encoding.UTF8, "application/json");
+            var json2 = JsonConvert.SerializeObject(chatUser);
+            var chatData = new StringContent(json2, Encoding.UTF8, "application/json");
+
             using var httpClient = new HttpClient();
+
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            return await httpClient.PostAsync(url, data);
+            await httpClient.PostAsync(chatUrl, chatData);
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            await httpClient.PostAsync(devicesUrl, devicesData);
+            return new HttpResponseMessage();
         }
 
         public async Task<HttpResponseMessage> UpdateUserInDevices(UserDto userDto, Guid id)
         {
-            var url = baseUrl + "/devices-users/" + id.ToString();
-            var user = new UserGatewayDto
+            var devicesUrl = devicesBaseUrl + "/devices-users/" + id.ToString();
+            var chatUrl = chatBaseUrl + $"/User";
+
+            var devicesUser = new DevicesUserGatewayDto
             {
                 Id = id,
                 Name = userDto.Name,
                 Email = userDto.Email
             };
-            var json = JsonConvert.SerializeObject(user);
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var chatUser = new ChatUserGatewayDto
+            {
+                Id = id,
+                Name = userDto.Name,
+                Role = userDto.Role,
+            };
+
+            var json1 = JsonConvert.SerializeObject(devicesUser);
+            var json2 = JsonConvert.SerializeObject(chatUser);
+            var devicesData = new StringContent(json1, Encoding.UTF8, "application/json");
+            var chatData = new StringContent(json2, Encoding.UTF8, "application/json");
+
             using var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            return await httpClient.PutAsync(url, data);
+
+            var a = await httpClient.PutAsync(chatUrl, chatData);
+            var b = await httpClient.PutAsync(devicesUrl, devicesData);
+            return new HttpResponseMessage();
         }
 
         public async Task<HttpResponseMessage> DeleteUserInDevices(Guid id)
         {
-            var url = baseUrl + "/devices-users/" + id.ToString();
+            var devicesUrl = devicesBaseUrl + "/devices-users/" + id.ToString();
+            var chatUrl = chatBaseUrl + "/User/" + id.ToString();
+
             using var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            return await httpClient.DeleteAsync(url);
+
+            await httpClient.DeleteAsync(chatUrl);
+            return await httpClient.DeleteAsync(devicesUrl);
         }
     }
 }

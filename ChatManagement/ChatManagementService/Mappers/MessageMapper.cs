@@ -30,5 +30,6 @@ public static class MessageMapper
         SenderId = message.SenderUserId,
         SenderName = message.SenderUser.Name,
         DestionationUserId = message.DestionationUserId != null ? message.DestionationUserId.Value : message.GroupId.Value,
+        Status = message.Seen == true ? "seen" : "delivered",
     };
 }

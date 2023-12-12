@@ -15,19 +15,24 @@ import { UsersService } from 'src/app/service/users/users.service';
 })
 export class ChatComponent implements OnInit {
   private connection!: HubConnection;
+  loggedUserRole: string;
   users: UserDto[] = [];
   groups: GroupDto[] = [];
   isUserSelected = true;
   selected: any | undefined;
   messageText: string = '';
   messages: MessageDto[] = [];
+  userIsTyping = false;
+  typingMessage = '';
 
   public constructor(
     private readonly userService: UsersService,
     private readonly messageService: MessageService,
     private readonly authService: AuthService,
     private readonly groupService: GroupService
-  ) {}
+  ) {
+    this.loggedUserRole = this.authService.getRoleFromToken();
+  }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe({
@@ -49,10 +54,29 @@ export class ChatComponent implements OnInit {
       .withUrl(environment.chatWebSocketUrl)
       .build();
     this.connection.on(this.authService.getIdFromToken(), (message: string) => {
-      console.log('here');
       if (message === 'newMessage') {
-        console.log('received');
-        this.getUserMessages();
+        this.getMessages();
+      }
+
+      if (message === 'newSeen') {
+        this.getMessages();
+      }
+
+      if (
+        message.includes('typing in group...') &&
+        message.includes(this.selected.id)
+      ) {
+        this.userIsTyping = true;
+        this.typingMessage = `${message.split(' ')[0]} is typing...`;
+      } else if (
+        message.includes('typing') &&
+        message.includes(this.selected.id)
+      ) {
+        this.userIsTyping = true;
+        this.typingMessage = `${this.selected.name} is typing...`;
+      } else if (message.includes('stopped')) {
+        this.userIsTyping = false;
+        this.typingMessage = '';
       }
     });
   }
@@ -74,17 +98,33 @@ export class ChatComponent implements OnInit {
       this.messageService
         .sendMessageToUser(this.selected?.id!, this.messageText)
         .subscribe({
-          next: () => this.getUserMessages(),
+          next: () => {
+            this.getUserMessages();
+            this.userIsTyping = false;
+            this.typingMessage = '';
+          },
         });
     } else {
       this.groupService
         .sendMessageToGroup(this.selected?.id!, this.messageText)
         .subscribe({
-          next: () => this.getGroupMessages(),
+          next: () => {
+            this.getGroupMessages();
+            this.userIsTyping = false;
+            this.typingMessage = '';
+          },
         });
     }
 
     this.messageText = '';
+  }
+
+  getMessages(): void {
+    if (this.isUserSelected) {
+      this.getUserMessages();
+    } else {
+      this.getGroupMessages();
+    }
   }
 
   getUserMessages() {
@@ -101,5 +141,9 @@ export class ChatComponent implements OnInit {
         this.messages = response.value !== undefined ? response.value : [];
       },
     });
+  }
+
+  emitUserTyping() {
+    this.messageService.userIsTyping(this.selected.id, this.messageText.length);
   }
 }

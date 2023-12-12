@@ -40,20 +40,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DeviceManagementContext>();
+RegisterScopedInstances();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        ValidIssuer = _config.GetValue<string>("JWT:Issuer"),
-                        ValidAudience = _config.GetValue<string>("JWT:Audience"),
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetValue<string>("JWT:Key")))
                     };
                 });
-RegisterScopedInstances();
 var app = builder.Build();
 
 app.UseCors(MyAllowSpecificOrigins);

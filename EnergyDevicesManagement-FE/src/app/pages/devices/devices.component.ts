@@ -8,34 +8,35 @@ import { DevicesService } from 'src/app/service/devices/devices.service';
 @Component({
   selector: 'app-devices',
   templateUrl: './devices.component.html',
-  styleUrls: ['./devices.component.css']
+  styleUrls: ['./devices.component.css'],
 })
 export class DevicesComponent {
-  public createDeviceText: string = "Create new device";
-  public displayedColumns: { [key: string]: string } =
-    {
-      name: "Name",
-      description: "Description",
-      maximuHourlyEnergyConsumption: "Energy Consumption"
-    };
+  public createDeviceText: string = 'Create new device';
+  public displayedColumns: { [key: string]: string } = {
+    name: 'Name',
+    description: 'Description',
+    maximuHourlyEnergyConsumption: 'Energy Consumption',
+  };
 
   public dataSource: any[] = [];
 
-  constructor(private readonly devicesService: DevicesService, private dialog: MatDialog) {
-  }
+  constructor(
+    private readonly devicesService: DevicesService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
-    this.devicesService.getDevices().subscribe((devices => {
+    this.devicesService.getDevices().subscribe((devices) => {
       this.dataSource = devices;
-      console.log(devices)
-    }
-    ));
+      console.log(devices);
+    });
   }
 
   openCreateDialog() {
     var dialogRef = this.dialog.open(DialogCreateDeviceComponent);
-    dialogRef.afterClosed()
-      .subscribe(() => { this.refresh(); })
+    dialogRef.afterClosed().subscribe(() => {
+      this.refresh();
+    });
   }
 
   deleteDevice(deviceDto: DeviceDto) {
@@ -45,10 +46,11 @@ export class DevicesComponent {
 
   editDevice(deviceDto: DeviceDto) {
     var dialogRef = this.dialog.open(DialogEditDeviceComponent, {
-      data: deviceDto
+      data: deviceDto,
     });
-    dialogRef.afterClosed()
-      .subscribe(() => { this.refresh(); })
+    dialogRef.afterClosed().subscribe(() => {
+      this.refresh();
+    });
   }
 
   refresh() {

@@ -26,24 +26,17 @@ namespace ChatManagement.Controllers
             _groupValidator = groupValidator;
         }
 
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = "ADMIN, CLIENT")]
         [HttpGet("Admin")]
         [ProducesResponseType(typeof(Response<List<GroupDto>>), (int)HttpStatusCode.OK)]
         public IActionResult GetAllForAdmin()
         {
-            var result = _groupService.GetGroupsForAdmin(GetIdFromToken());
+            var role = GetRoleFromToken();
+            var result = role == "ADMIN" 
+                ? _groupService.GetGroupsForAdmin(GetIdFromToken())
+                : _groupService.GetGroupsForUser(GetIdFromToken());
             return FormatResponse(result);
         }
-
-        [HttpGet("User/{UserId}")]
-        [Authorize(Roles = "ADMIN, CLIENT")]
-        [ProducesResponseType(typeof(Response<List<GroupDto>>), (int)HttpStatusCode.OK)]
-        public IActionResult GetAllForUser()
-        {
-            var result = _groupService.GetGroupsForUser(GetIdFromToken());
-            return FormatResponse(result);
-        }
-
 
         [HttpPost("CreateGroup")]
         [Authorize(Roles = "ADMIN")]
@@ -100,6 +93,15 @@ namespace ChatManagement.Controllers
             var jsonToken = handler.ReadToken(_bearer_token) as JwtSecurityToken;
             var id = jsonToken?.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value;
             return new Guid(id);
+        }
+
+        private string GetRoleFromToken()
+        {
+            var _bearer_token = Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(_bearer_token) as JwtSecurityToken;
+            var role = jsonToken?.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role)?.Value;
+            return role;
         }
     }
 }

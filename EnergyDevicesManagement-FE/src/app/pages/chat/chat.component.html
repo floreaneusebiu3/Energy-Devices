@@ -45,17 +45,33 @@
         >
           <div class="message">
             {{ message.messageText }}
+            <div
+              *ngIf="message.senderId !== selected.id"
+              class="message-status"
+            >
+              <span>{{ message.status }}</span>
+            </div>
           </div>
         </div>
       </div>
-      <div *ngIf="selected !== undefined" class="input-container d-flex w-100">
-        <input
-          (keyup.enter)="sendMessage()"
-          type="text"
-          [(ngModel)]="messageText"
-        />
-        <div>
-          <button (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+      <div>
+        <span *ngIf="userIsTyping" style="margin-left: 15px">
+          {{ typingMessage }}
+        </span>
+        <div
+          *ngIf="selected !== undefined"
+          class="input-container d-flex w-100"
+        >
+          <input
+            [readonly]="loggedUserRole === 'CLIENT' && !isUserSelected"
+            (keyup.enter)="sendMessage()"
+            type="text"
+            [(ngModel)]="messageText"
+            (ngModelChange)="emitUserTyping()"
+          />
+          <div>
+            <button (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+          </div>
         </div>
       </div>
     </div>

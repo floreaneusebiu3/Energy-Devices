@@ -24,6 +24,7 @@ namespace ChatManagement.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(typeof(Response<UserDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Response<UserDto>), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Response<UserDto>), (int)HttpStatusCode.BadRequest)]
@@ -40,6 +41,7 @@ namespace ChatManagement.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(typeof(Response<UserDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Response<UserDto>), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Response<UserDto>), (int)HttpStatusCode.BadRequest)]
@@ -56,6 +58,7 @@ namespace ChatManagement.Controllers
         }
 
         [HttpDelete("{UserId}")]
+        [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(typeof(Response<UserDto>), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Response<UserDto>), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Response<UserDto>), (int)HttpStatusCode.BadRequest)]
@@ -67,6 +70,7 @@ namespace ChatManagement.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "ADMIN")]
         [ProducesResponseType(typeof(Response<List<UserDto>>), (int)HttpStatusCode.OK)]
         public IActionResult GetAll()
         {

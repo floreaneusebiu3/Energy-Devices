@@ -32,7 +32,7 @@ namespace UserManagementService
             }
             try
             {
-                await _apiClient.AddUserInDevices(registerUserDto, id);
+                var a = await _apiClient.AddUserInDevices(registerUserDto, id);
             }
             catch (HttpRequestException)
             {

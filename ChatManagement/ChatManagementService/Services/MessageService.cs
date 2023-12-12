@@ -11,19 +11,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ChatManagementService.Services;
 
-public class MessageService: IMessageService
+public class MessageService : IMessageService
 {
     private readonly BaseRepository<Message> _messageRepository;
     private readonly BaseRepository<User> _userRepository;
     private readonly BaseRepository<Group> _groupRepository;
+    private readonly BaseRepository<UserGroup> _userGroupRepository;
     private readonly IHubContext<ClientHub> _webSocket;
 
-    public MessageService(BaseRepository<Message> messageRepository, BaseRepository<User> userRepository, BaseRepository<Group> groupRepository, IHubContext<ClientHub> webSocket)
+    public MessageService(BaseRepository<Message> messageRepository, BaseRepository<User> userRepository, BaseRepository<Group> groupRepository, IHubContext<ClientHub> webSocket, BaseRepository<UserGroup> userGroupRepository)
     {
         _messageRepository = messageRepository;
         _userRepository = userRepository;
         _groupRepository = groupRepository;
         _webSocket = webSocket;
+        _userGroupRepository = userGroupRepository;
     }
 
     public Response<UserMessageDto> SendMessageToUser(Guid senderUserId, UserMessageDto messageDto)
@@ -54,13 +56,21 @@ public class MessageService: IMessageService
             return new Response<GroupMessageDto>(new GroupNotFoundException(Constants.API_GROUP_NOT_FOUND_EXCEPTION));
         }
 
+        var groupMembersId = _userGroupRepository.Query(ug => ug.GroupId == messageDto.GroupId)
+            .Select(ug => ug.UserId)
+            .ToList();
+        foreach (var memberId in groupMembersId)
+        {
+            _webSocket.Clients.All.SendAsync(memberId.ToString(), "newMessage");
+        }
+
         _messageRepository.Add(messageDto.ProjectToEntity(senderUserId));
         _messageRepository.SaveChanges();
 
         return new Response<GroupMessageDto>(messageDto);
     }
 
-    public Response<List<MessageDto>> GetGroupMessages(Guid groupId)
+    public Response<List<MessageDto>> GetGroupMessages(Guid groupId, string currentUserRole)
     {
         if (!_groupRepository.Query(u => u.Id == groupId).Any())
         {
@@ -71,14 +81,14 @@ public class MessageService: IMessageService
             .Include(m => m.SenderUser)
             .OrderByDescending(m => m.Timestamp)
             .ToList();
-        foreach (Message message in messages)
-        { 
-            message.Seen = true;
-        }
-        _messageRepository.SaveChanges();
 
-       var messagesDto = messages.Select(m => m.ProjectToMessageDto())
-                                 .ToList();
+        if (currentUserRole == "CLIENT")
+        {
+            CheckGroupUnseenMessages(messages, groupId);
+        }
+
+        var messagesDto = messages.Select(m => m.ProjectToMessageDto())
+                                  .ToList();
         return new Response<List<MessageDto>>(messagesDto);
     }
 
@@ -95,13 +105,89 @@ public class MessageService: IMessageService
             .Include(m => m.SenderUser)
             .OrderByDescending(m => m.Timestamp)
             .ToList();
-        foreach (Message message in messages)
-        {
-            message.Seen = true;
-        }
+
+        CheckUnseenMessages(messages, otherUserId);
 
         var messagesDto = messages.Select(m => m.ProjectToMessageDto())
                                   .ToList();
         return new Response<List<MessageDto>>(messagesDto);
+    }
+
+    private void CheckUnseenMessages(List<Message> messages, Guid destinationUserId)
+    {
+        bool wasUnseenMessage = false;
+        foreach (Message message in messages)
+        {
+            if (message.Seen == false && message.SenderUserId == destinationUserId)
+            {
+                message.Seen = true;
+                wasUnseenMessage = true;
+            }
+        }
+
+        if (wasUnseenMessage)
+        {
+            _messageRepository.SaveChanges();
+            _webSocket.Clients.All.SendAsync(destinationUserId.ToString(), "newSeen");
+        }
+    }
+
+    private void CheckGroupUnseenMessages(List<Message> messages, Guid groupId)
+    {
+        bool wasUnseenMessage = false;
+        foreach (Message message in messages)
+        {
+            if (message.Seen == false && message.GroupId == groupId)
+            {
+                message.Seen = true;
+                wasUnseenMessage = true;
+            }
+        }
+
+        if (wasUnseenMessage)
+        {
+            var groupAdminId = _groupRepository.Query(g => g.Id == groupId)
+                .Select(g => g.AdminId)
+                .FirstOrDefault();
+            _messageRepository.SaveChanges();
+            _webSocket.Clients.All.SendAsync(groupAdminId.ToString(), "newSeen");
+        }
+    }
+
+    public void NotifyUserIsTyping(Guid currentUserId, Guid destinationUserId, int textLength)
+    {
+        var adminName = _groupRepository.Query(g => g.Id == destinationUserId)
+            .Include(g => g.Admin)
+            .Select(g => g.Admin.Name)
+            .FirstOrDefault();
+        if (adminName != null)
+        {
+            var groupMembersId = _userGroupRepository.Query(ug => ug.GroupId == destinationUserId)
+                .Select(ug => ug.UserId)
+                .ToList();
+            if (textLength > 0)
+            {
+                foreach (var memberId in groupMembersId)
+                    _webSocket.Clients.All.SendAsync(memberId.ToString(), $"{adminName} {destinationUserId} is typing in group...");
+            }
+            else
+            {
+                foreach (var memberId in groupMembersId)
+                    _webSocket.Clients.All.SendAsync(memberId.ToString(), $"{adminName} stopped");
+            }
+            return;
+        }
+
+        var userId = _userRepository.Query(u => u.Id == currentUserId)
+             .Select(u => u.Id)
+             .FirstOrDefault();
+        if (textLength > 0)
+        {
+            _webSocket.Clients.All.SendAsync(destinationUserId.ToString(), $"{userId}  is typing...");
+        }
+        else
+        {
+            _webSocket.Clients.All.SendAsync(destinationUserId.ToString(), $"{userId} stopped");
+        }
     }
 }
