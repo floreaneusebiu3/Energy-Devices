@@ -38,7 +38,8 @@
         <div
           *ngFor="let message of messages"
           [ngClass]="
-            message.senderId === selected?.id
+            (isUserSelected && message.senderId === selected?.id) ||
+            (!isUserSelected && loggedUserRole === 'CLIENT')
               ? 'message-align-start'
               : 'message-align-end'
           "
@@ -46,7 +47,11 @@
           <div class="message">
             {{ message.messageText }}
             <div
-              *ngIf="message.senderId !== selected.id"
+              *ngIf="
+                message.senderId !== selected.id &&
+                (isUserSelected ||
+                  (!isUserSelected && loggedUserRole === 'ADMIN'))
+              "
               class="message-status"
             >
               <span>{{ message.status }}</span>

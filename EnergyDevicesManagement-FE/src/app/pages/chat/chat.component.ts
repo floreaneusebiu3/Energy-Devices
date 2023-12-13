@@ -100,8 +100,6 @@ export class ChatComponent implements OnInit {
         .subscribe({
           next: () => {
             this.getUserMessages();
-            this.userIsTyping = false;
-            this.typingMessage = '';
           },
         });
     } else {
@@ -110,8 +108,6 @@ export class ChatComponent implements OnInit {
         .subscribe({
           next: () => {
             this.getGroupMessages();
-            this.userIsTyping = false;
-            this.typingMessage = '';
           },
         });
     }
@@ -130,6 +126,7 @@ export class ChatComponent implements OnInit {
   getUserMessages() {
     this.messageService.getUserMessages(this.selected?.id!).subscribe({
       next: (response) => {
+        this.userIsTyping = false;
         this.messages = response.value !== undefined ? response.value : [];
       },
     });
@@ -138,6 +135,7 @@ export class ChatComponent implements OnInit {
   getGroupMessages() {
     this.groupService.getGroupMessages(this.selected?.id!).subscribe({
       next: (response) => {
+        this.userIsTyping = false;
         this.messages = response.value !== undefined ? response.value : [];
       },
     });
